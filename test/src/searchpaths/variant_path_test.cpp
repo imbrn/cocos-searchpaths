@@ -7,14 +7,18 @@ using namespace searchpaths;
 
 TEST_CASE("VariantPath.paths") {
   
-  auto path = new RootPath(new VariantPath("mobile", new VariantPath("android", new VariantPath("pt-br",
-    new VariantPath("res/small", new BasePath())))));
+  auto path = new RootPath(
+    new VariantPath("mobile/",
+      new VariantPath("android/",
+        new VariantPath("pt-br/",
+          new VariantPath("res/small/",
+            new BasePath())))));
 
   REQUIRE(path->paths() == std::vector<std::string>({
-    "mobile/android/pt-br/res/small",
-    "mobile/android/pt-br",
-    "mobile/android",
-    "mobile",
+    "mobile/android/pt-br/res/small/",
+    "mobile/android/pt-br/",
+    "mobile/android/",
+    "mobile/",
     ""
   }));
 
